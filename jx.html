@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WPBKJ视频解析</title>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .container-fluid {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #iframe-container {
+            flex: 1;
+            background-color: #f8f9fa;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid p-3">
+        <!-- 新增Toast容器 -->
+        <div class="toast-container position-fixed top-50 start-50 translate-middle p-3">
+            <div id="errorToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-body text-center">
+                    请输入有效内容后再提交！
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-2 mb-3">
+            <div class="col-5">
+                <input type="text" class="form-control" id="inputText" placeholder="输入影片名称或链接" autocomplete="off">
+            </div>
+            <div class="col-4">
+                <select class="form-select" id="apiSelect">
+                    <option value="https://z1.m1907.top/?jx=">M1907</option>
+                    <option value="https://jx.jsonplayer.com/player/?url=">B站1</option>
+                    <option value="https://jx.aidouer.net/?url=">爱豆</option>
+                    <option value="https://vip.bljiex.com/?v=">BL</option>
+                    <option value="https://api.qianqi.net/vip/?url=">冰豆</option>
+                    <option value="https://jx.618g.com/?url=">百域</option>
+                    <option value="https://www.ckplayer.vip/jiexi/?url=">CK</option>
+                    <option value="https://www.gai4.com/?url=">CHok</option>
+                    <option value="https://www.ckmov.vip/api.php?url=">ckmov</option>
+                    <option value="https://www.h8jx.com/jiexi.php?url=">H8</option>
+                    <option value="https://jx.playerjy.com/?url=">JY</option>
+                    <option value="https://ckmov.ccyjjd.com/ckmov/?url=">解析</option>
+                    <option value="https://api.jiexi.la/?url=">解析la</option>
+                    <option value="https://vip.laobandq.com/jiexi.php?url=">老板</option>
+                    <option value="https://www.mtosz.com/m3u8.php?url=">MAO</option>
+                    <option value="https://jx.m3u8.tv/jiexi/?url=">M3U8</option>
+                    <option value="https://www.nxflv.com/?url=">诺讯</option>
+                    <option value="https://okjx.cc/?url=">OK</option>
+                    <option value="https://www.playm3u8.cn/jiexi.php?url=">PM</option>
+                    <option value="https://www.pangujiexi.cc/jiexi.php?url=">盘古</option>
+                    <option value="https://jx.nnxv.cn/tv.php?url=">七哥</option>
+                    <option value="https://jx.rdhk.net/?v=">RDHK</option>
+                    <option value="https://jx.blbo.cc:4433/?url=">人人迷</option>
+                    <option value="https://jx.ap2p.cn/?url=">思云</option>
+                    <option value="https://jsap.attakids.com/?url=">思古3</option>
+                    <option value="https://jx.dj6u.com/?url=">听乐</option>
+                    <option value="https://jx.ivito.cn/?url=">维多</option>
+                    <option value="https://jx.xmflv.com/?url=">虾米</option>
+                    <option value="https://sb.5gseo.net/?url=">云端</option>
+                    <option value="https://jx.yparse.com/index.php?url=">云析</option>
+                    <option value="https://go.yh0523.cn/y.cy?url=">0523</option>
+                    <option value="https://www.1717yun.com/jx/ty.php?url=">17云</option>
+                    <option value="https://jx.000180.top/jx/?url=">180</option>
+                    <option value="https://jx.4kdv.com/?url=">4K</option>
+                    <option value="https://www.8090g.cn/?url=">8090</option>
+                </select>
+            </div>
+            <div class="col-3">
+                <button class="btn btn-primary w-100" id="submitBtn">确认</button>
+            </div>
+        </div>
+        <p class="text-center">在上方输入框输入影片名称或链接之后选择解析站点，默认为M1907，如果找不到就换其他的。</p>
+        <div id="iframe-container">
+            <iframe id="contentFrame" src="https://im1907.top/"></iframe>
+        </div>
+        <span class="lead fw-medium fs-6 text-center">免责声明：本站不储存任何访问信息及视频，只提供相关视频网站的快捷链接，视频版权等问题请直接联系对应网站。<br>
+            <a class="link-secondary link-offset-2 link-underline link-underline-opacity-0"
+                href="https://beian.miit.gov.cn">豫ICP备2022002588号-3</a>
+            <a class="link-secondary link-offset-2 link-underline link-underline-opacity-0" target="_blank"
+                href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41170202000381">
+                <span><img alt="网安备案" src="/static/image/beianlogo.png" />豫公网安备
+                    41170202000381号</a></span>
+        </span>
+    </div>
+
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputText = document.getElementById('inputText');
+            const apiSelect = document.getElementById('apiSelect');
+            const submitBtn = document.getElementById('submitBtn');
+            const contentFrame = document.getElementById('contentFrame');
+
+            // 初始化Toast
+            const errorToastEl = document.getElementById('errorToast');
+            const errorToast = new bootstrap.Toast(errorToastEl, {
+                autohide: true,
+                delay: 3000
+            });
+
+            // 提交验证函数
+            function validateInput() {
+                const inputValue = inputText.value.trim();
+                if (!inputValue) {
+                    errorToast.show();
+                    return false;
+                }
+                return true;
+            }
+
+            // 加载内容函数
+            function loadContent() {
+                if (!validateInput()) return;
+
+                const apiPath = apiSelect.value;
+                const params = encodeURIComponent(inputText.value.trim());
+
+                const fullUrl = `${apiPath}${params}`;
+                contentFrame.src = fullUrl;
+            }
+
+            // 事件监听
+            submitBtn.addEventListener('click', loadContent);
+            inputText.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') loadContent();
+            });
+        });
+    </script>
+</body>
+
+</html>

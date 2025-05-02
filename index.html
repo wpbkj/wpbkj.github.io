@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WPBKJ</title>
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        /* 横屏样式 */
+        @media (min-width: 992px) {
+
+            html,
+            body {
+                overflow-y: hidden;
+                /* 禁止页面滚动 */
+            }
+
+            .left-column {
+                height: 100vh;
+                padding: 0 !important;
+            }
+
+            .square-img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .right-column {
+                height: 100vh;
+                overflow-y: auto;
+                /* 右侧内容可滚动 */
+                padding: 2rem;
+            }
+        }
+
+        /* 竖屏样式 */
+        @media (max-width: 991.98px) {
+            .square-img {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 1/1;
+                /* 保持正方形 */
+                object-fit: cover;
+            }
+
+            .right-column {
+                padding: 1.5rem;
+            }
+        }
+
+        /* 友情链接卡片样式 */
+        .friend-link-card {
+            border: 2px solid #dee2e6;
+            border-radius: 15px;
+            padding: 1.25rem;
+            transition: all 0.3s ease;
+            background: white;
+            position: relative;
+        }
+
+        .friend-link-card:hover {
+            border-color: #0d6efd;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: #212529;
+        }
+
+        .divider {
+            margin: 0.5rem 0 1rem;
+            border-color: rgba(0, 0, 0, 0.1);
+            opacity: 1;
+        }
+
+        .card-text {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+
+        /* 图标容器 */
+        .icon-wrapper {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #dee2e6;
+            transition: inherit;
+        }
+
+        .link-icon {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .friend-link-card {
+                margin: 1rem 0;
+            }
+
+            .icon-wrapper {
+                width: 50px;
+                height: 50px;
+            }
+
+            .card-title {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row flex-lg-nowrap">
+            <!-- 左侧图片 -->
+            <div class="col-lg-6 left-column order-lg-first order-first">
+                <img src="static/image/tx.png" alt="示例图片" class="square-img">
+            </div>
+
+            <!-- 右侧内容 -->
+            <div class="col-lg-6 right-column order-lg-last order-last">
+                <div class="content">
+                    <h1 class="mb-4">WPBKJ</h1>
+                    <p class="lead">想要的都拥有 得不到的都释怀<br>
+                        - Python PHP C Flutter Dart Lua HTML CSS JS -<br>
+                        QQ: 64345171<br>
+                        Gitee：<a
+                            class="link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                            href="https://gitee.com/wpbkj">wpbkj</a><br>
+                        GitHub: <a
+                            class="link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                            href="https://github.com/wpbkj">wpbkj</a><br>
+                        邮箱：<a
+                            class="link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                            href="mailto:admin@wpbkj.com">admin@wpbkj.com</a></p>
+                    <p class="lead fw-medium fs-6">Copyright © 2018 - 2025 WPBKJ. All Rights Reserved.<br>
+                        <a class="link-secondary link-offset-2 link-underline link-underline-opacity-0"
+                            href="https://beian.miit.gov.cn">豫ICP备2022002588号-3</a><br>
+                        <a class="link-secondary link-offset-2 link-underline link-underline-opacity-0" target="_blank"
+                            href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41170202000381">
+                            <span><img alt="网安备案" src="static/image/beianlogo.png" />豫公网安备
+                                41170202000381号</a></span>
+                    </p><br>
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        Views-<b><span id="busuanzi_value_site_pv"></span></b>-
+                    </span>
+                    <!-- 功能 -->
+                    <div class="row d-flex justify-content-evenly">
+                        <h3 class="fs-2">功能</h3>
+
+                        <div class="col-sm-5 friend-link-card mb-4">
+                            <a href="/jx.html" target="_blank" rel="noopener noreferrer"
+                                class="link-offset-2 link-underline link-underline-opacity-0">
+                                <div class="row g-0 align-items-start">
+                                    <!-- 左侧文字部分 -->
+                                    <div>
+                                        <h3 class="card-title">视频解析</h3>
+                                        <hr class="divider">
+                                        <p class="card-text">接口多达35个</p>
+                                    </div>
+
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+                    <!-- 友情链接 -->
+                    <div class="row d-flex justify-content-evenly">
+                        <h3 class="fs-2">友情链接</h3>
+
+                        <div class="col-sm-5 friend-link-card mb-4">
+                            <a href="https://www.chncert.cn/" target="_blank" rel="noopener noreferrer"
+                                class="link-offset-2 link-underline link-underline-opacity-0">
+                                <div class="row g-0 align-items-start">
+                                    <!-- 左侧文字部分 -->
+                                    <div>
+                                        <h3 class="card-title">中国红客联盟</h3>
+                                        <hr class="divider">
+                                        <p class="card-text">中国红客联盟官方网站</p>
+                                    </div>
+
+                                </div>
+                            </a>
+                        </div>
+
+
+                        <div class="col-sm-5 friend-link-card mb-4">
+                            <a href="https://www.fcsqsec.com/" target="_blank" rel="noopener noreferrer"
+                                class="link-offset-2 link-underline link-underline-opacity-0">
+                                <div class="row g-0 align-items-start">
+                                    <!-- 左侧文字部分 -->
+                                    <div class="col-9">
+                                        <h3 class="card-title">FCSQ安全团队</h3>
+                                        <hr class="divider">
+                                        <p class="card-text">FCCS安全团队官方网站</p>
+                                    </div>
+
+                                    <!-- 右侧图标 -->
+                                    <div class="col-3 text-end">
+                                        <div class="icon-wrapper">
+                                            <img src="static/image/FCSQ.png" alt="链接图标" class="link-icon">
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col-sm-5 friend-link-card mb-4">
+                            <a href="https://blog.pingchas.com/" target="_blank" rel="noopener noreferrer"
+                                class="link-offset-2 link-underline link-underline-opacity-0">
+                                <div class="row g-0 align-items-start">
+                                    <!-- 左侧文字部分 -->
+                                    <div>
+                                        <h3 class="card-title">Pingchas's学习笔记</h3>
+                                        <hr class="divider">
+                                        <p class="card-text">pingchas</p>
+                                    </div>
+
+                                </div>
+                            </a>
+                        </div>
+
+
+                        <div class="col-sm-5 friend-link-card mb-4">
+                            <a href="https://www.hscsec.cn/" target="_blank" rel="noopener noreferrer"
+                                class="link-offset-2 link-underline link-underline-opacity-0">
+                                <div class="row g-0 align-items-start">
+                                    <!-- 左侧文字部分 -->
+                                    <div class="col-9">
+                                        <h3 class="card-title">中龙技术|红客突击队</h3>
+                                        <hr class="divider">
+                                        <p class="card-text">红客突击队官网</p>
+                                    </div>
+
+                                    <!-- 右侧图标 -->
+                                    <div class="col-3 text-end">
+                                        <div class="icon-wrapper">
+                                            <img src="static/image/hktjd.jpg" alt="链接图标" class="link-icon">
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
